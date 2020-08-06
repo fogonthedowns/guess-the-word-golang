@@ -1,3 +1,24 @@
 843. Guess the Word
 
 Go implementation
+
+
+The intuition is:
+
+We use a min max algorithm.
+
+(1) we create a 2d array comparing the wordlist to itself, counting the number of similar characters. For example "Justin" and "Jason" would return 2
+
+(2) We map each row of the 2d matrix getting a count of the matches from (1). for example the map above would be 2:1
+
+(3) For each row, we find the max count, the max count of the map above is 1
+
+(4) We then loop over every row of the 2d matrix, looking at the map from step 3, we then find the Minimum value of all the rows. Since there is only 1 row in our example, the min value would be 1. The intuition behind this is our word guess will give us all possible, character matches. We pick the very best row.
+
+(5) We then call Guess to get the count of characters, from our guess that match. Suppose our guess was "Justin" and the answer was "Jason", match would return 2
+
+(6) Create a new "temp possible" Array.
+
+(7) Looping over all possible guesses, we look at 2dMatrix[guess][index from loop]. Any guess that matches the value of the 2d array, will be assigned to appended to temp. 
+
+(8) We assign temp to possible. This will reduce the set of possible guesses for the next loop of guesses, in the next guess attempt (the loop).
